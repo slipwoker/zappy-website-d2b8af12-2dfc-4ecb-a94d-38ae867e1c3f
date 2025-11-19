@@ -385,3 +385,26 @@ window.onload = function() {
         }
     }, true);
 };
+
+/* Added Component Script */
+// Optional: Add smooth scroll animation when section comes into view
+document.addEventListener('DOMContentLoaded', function() {
+  const aboutSection = document.querySelector('.about-section-v1');
+  
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+  
+  if (aboutSection) {
+    observer.observe(aboutSection);
+  }
+});

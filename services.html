@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512x512.png">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <style>
 /* Zappy Attribution Header Styles */
 .zappy-header {
@@ -31,6 +31,8 @@
   align-items: center;
   justify-content: center;
   min-height: 21px;
+  direction: ltr !important;
+  unicode-bidi: isolate;
 }
 
     .zappy-header p {
@@ -43,6 +45,7 @@
       display: inline-block;
       vertical-align: baseline;
       margin-bottom: 0 !important;
+      direction: ltr !important;
     }
 
 .zappy-header .zappy-link {
@@ -262,7 +265,66 @@
 })();
 </script>
 <!-- End Zappy Analytics -->
-    <link rel="stylesheet" href="styles.css">
+
+    <style id="zappy-mobile-submenu-styles">
+      /* Mobile submenu accordion styles */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu {
+          position: static !important;
+          transform: none !important;
+          box-shadow: none !important;
+          background: transparent !important;
+          margin-top: 0 !important;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          visibility: hidden;
+          transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
+          padding: 0 !important;
+          border-radius: 0 !important;
+        }
+        .sub-menu.mobile-expanded {
+          max-height: 500px !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          padding: 8px 0 8px 16px !important;
+        }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded, html[lang="ar"] .sub-menu.mobile-expanded {
+          padding: 8px 16px 8px 0 !important;
+        }
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu {
+          opacity: 0; visibility: hidden; pointer-events: none;
+        }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded {
+          opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
+        }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) {
+          display: flex !important; flex-wrap: wrap !important; align-items: center !important;
+        }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a {
+          flex: 1 !important;
+        }
+        .mobile-submenu-toggle {
+          display: flex !important; align-items: center !important; justify-content: center !important;
+          width: 44px !important; height: 44px !important; background: transparent !important;
+          border: none !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important;
+          flex-shrink: 0 !important; -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-submenu-toggle::after {
+          content: '' !important; display: block !important; width: 0 !important; height: 0 !important;
+          border-left: 6px solid transparent !important; border-right: 6px solid transparent !important;
+          border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important;
+        }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu {
+          flex-basis: 100% !important; width: 100% !important;
+        }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; font-size: 14px !important; }
+        .sub-menu a:hover { background-color: transparent !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -274,7 +336,7 @@
 <div class="container nav-container">
 <div class="nav-brand">
 <a href="/" class="logo-link">
-<img src="assets/logo.webp" alt="רן השרירן" class="logo" />
+<img src="/assets/logo.webp" alt="רן השרירן" class="logo" />
 </a>
 </div>
 <button class="mobile-toggle" id="mobileToggle" aria-label="פתח תפריט">
@@ -311,37 +373,37 @@
 <h2>השירותים המקיפים שלנו</h2>
 <div class="services-grid">
 <div class="service-card">
-<img data-placeholder="service-4" data-context="אימון כוח מתקדם בסטודיו פרטי, מתאמן בגיל 30+ מבצע תרגילי משקל חופשי עם ליווי מאמן מקצועי, ציוד מודרני ותאורה אנרגטית" src="assets/service-service-4.webp" alt="אימוני כוח מותאמים אישית במסגרת אימון אישי בסטודיו פרטי בתל אביב">
+<img data-placeholder="service-4" data-context="אימון כוח מתקדם בסטודיו פרטי, מתאמן בגיל 30+ מבצע תרגילי משקל חופשי עם ליווי מאמן מקצועי, ציוד מודרני ותאורה אנרגטית" src="/assets/service-service-4.webp" alt="אימוני כוח מותאמים אישית במסגרת אימון אישי בסטודיו פרטי בתל אביב">
 <h3>אימוני כוח וחיזוק שרירים</h3>
 <p>תוכנית אימונים מקיפה לבניית מסת שריר, חיזוק הגוף, ושיפור הכוח הפיזי. האימונים כוללים עבודה עם משקולות, תרגילי התנגדות, ותרגילים פונקציונליים שמחזקים את כל קבוצות השרירים העיקריות. מתאים במיוחד למי שרוצה לחזק את הגוף, למנוע ירידה במסת השריר הקשורה לגיל, ולשפר את היציבה והאיזון.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-5" data-context="אימון קרדיו אינטנסיבי בסטודיו, מתאמנת בגיל 30+ מבצעת תרגילי HIIT דינמיים, תנועה מהירה ואנרגיה גבוהה" src="assets/service-service-5.webp" alt="אימוני קרדיו מותאמים עם מאמן כושר אישי מקצועי">
+<img data-placeholder="service-5" data-context="אימון קרדיו אינטנסיבי בסטודיו, מתאמנת בגיל 30+ מבצעת תרגילי HIIT דינמיים, תנועה מהירה ואנרגיה גבוהה" src="/assets/service-service-5.webp" alt="אימוני קרדיו מותאמים עם מאמן כושר אישי מקצועי">
 <h3>אימוני קרדיו ושריפת שומן</h3>
 <p>תוכנית אימונים אירובית שמשלבת ריצה, רכיבה, קפיצות, ותרגילי HIIT (אימון אינטרוולים בעצימות גבוהה). האימונים מותאמים לרמת הכושר האישית ומתקדמים בהדרגה. מושלם למי שרוצה לשרוף קלוריות, לשפר את סיבולת הלב והריאות, ולהגביר את רמות האנרגיה היומיומיות.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-6" data-context="אימון גמישות ויוגה בסטודיו שקט, מתאמן בגיל 30+ מבצע תרגילי מתיחה מתקדמים עם מאמן, אווירה רגועה ומרכזת" src="assets/service-service-6.webp" alt="אימוני גמישות ותנועתיות במסגרת אימון אישי">
+<img data-placeholder="service-6" data-context="אימון גמישות ויוגה בסטודיו שקט, מתאמן בגיל 30+ מבצע תרגילי מתיחה מתקדמים עם מאמן, אווירה רגועה ומרכזת" src="/assets/service-service-6.webp" alt="אימוני גמישות ותנועתיות במסגרת אימון אישי">
 <h3>גמישות, תנועתיות ומניעת פציעות</h3>
 <p>תוכנית אימונים ייחודית שמתמקדת בשיפור טווח התנועה, הגמישות, והניידות של המפרקים. האימונים כוללים תרגילי מתיחה דינמיים וסטטיים, תרגילי ניידות, ועבודה על שיפור היציבה. חיוני למניעת פציעות, הקלה על כאבי גב וכתפיים, ושיפור התפקוד היומיומי.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-7" data-context="אימון פונקציונלי בסטודיו, מתאמן בגיל 30+ מבצע תרגילי תנועה טבעיים עם ציוד מגוון, סביבה דינמית ומעוררת השראה" src="assets/service-service-7.webp" alt="אימונים פונקציונליים עם מאמן כושר מומלץ">
+<img data-placeholder="service-7" data-context="אימון פונקציונלי בסטודיו, מתאמן בגיל 30+ מבצע תרגילי תנועה טבעיים עם ציוד מגוון, סביבה דינמית ומעוררת השראה" src="/assets/service-service-7.webp" alt="אימונים פונקציונליים עם מאמן כושר מומלץ">
 <h3>אימונים פונקציונליים</h3>
 <p>תרגילים שמדמים תנועות יומיומיות ומכינים את הגוף לפעילות בחיי היום-יום. האימונים כוללים תרגילים רב-מפרקיים, עבודה על איזון ויציבות, וחיזוק שרירי הליבה. מתאים במיוחד למי שרוצה לשפר את התפקוד הפיזי הכללי, למנוע נפילות, ולהרגיש חזק ובטוח יותר בפעילויות היומיומיות.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-8" data-context="ייעוץ תזונתי אישי, מפגש אחד על אחד עם מאמן כושר אישי סביב שולחן עם תפריט תזונה ומזון בריא, אווירה מקצועית ותומכת" src="assets/service-service-8.webp" alt="ייעוץ תזונתי מקצועי במסגרת אימון אישי בסטודיו פרטי בתל אביב">
+<img data-placeholder="service-8" data-context="ייעוץ תזונתי אישי, מפגש אחד על אחד עם מאמן כושר אישי סביב שולחן עם תפריט תזונה ומזון בריא, אווירה מקצועית ותומכת" src="/assets/service-service-8.webp" alt="ייעוץ תזונתי מקצועי במסגרת אימון אישי בסטודיו פרטי בתל אביב">
 <h3>ייעוץ תזונתי וליווי תזונתי</h3>
 <p>תוכנית תזונה מותאמת אישית שמשלימה את האימונים ומסייעת להשיג את היעדים מהר יותר. הליווי כולל בניית תפריט מותאם, מעקב שבועי, והתאמות לפי הצורך. אני מאמין שתזונה נכונה היא 70% מההצלחה, ולכן אני מספק הדרכה מקיפה ותמיכה מתמשכת.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-9" data-context="אימון שיקום ופציעות בסטודיו, מאמן כושר אישי מסייע למתאמן בגיל 30+ בתרגילי שיקום עדינים, סביבה בטוחה ומקצועית" src="assets/service-service-9.webp" alt="אימוני שיקום ומניעת פציעות עם מאמן כושר אישי">
+<img data-placeholder="service-9" data-context="אימון שיקום ופציעות בסטודיו, מאמן כושר אישי מסייע למתאמן בגיל 30+ בתרגילי שיקום עדינים, סביבה בטוחה ומקצועית" src="/assets/service-service-9.webp" alt="אימוני שיקום ומניעת פציעות עם מאמן כושר אישי">
 <h3>שיקום פציעות ואימונים מותאמים</h3>
 <p>תוכנית אימונים מיוחדת למי שמתאושש מפציעה או סובל מכאבים כרוניים. האימונים בנויים בזהירות, מתקדמים בהדרגה, ומתמקדים בחיזוק האזורים הפגיעים ובשיפור התפקוד. עובד בשיתוף פעולה עם פיזיותרפיסטים ומומחי שיקום כשצריך.</p>
 </div>
 <div class="service-card">
-<img data-placeholder="service-10" data-context="אימון זוגות בסטודיו פרטי, זוג בגיל 30+ מתאמן יחד עם מאמן כושר אישי, אנרגיה חיובית ותמיכה הדדית" src="assets/service-service-10.webp" alt="אימוני זוגות במסגרת אימון אישי בסטודיו פרטי">
+<img data-placeholder="service-10" data-context="אימון זוגות בסטודיו פרטי, זוג בגיל 30+ מתאמן יחד עם מאמן כושר אישי, אנרגיה חיובית ותמיכה הדדית" src="/assets/service-service-10.webp" alt="אימוני זוגות במסגרת אימון אישי בסטודיו פרטי">
 <h3>אימוני זוגות ומשפחות</h3>
 <p>אופציה מצוינת למי שרוצה להתאמן עם בן/בת זוג או חבר. האימונים משלבים תרגילים משותפים ואישיים, יוצרים מוטיבציה הדדית, ומאפשרים לכם להתקדם ביחד לקראת היעדים שלכם. גם חסכוני יותר מאימונים אישיים נפרדים!</p>
 </div>
@@ -439,7 +501,11 @@
       if (data.showAttribution) {
         var header = document.getElementById('zappy-attribution-header');
         if (header) {
-          header.style.display = 'block';
+          // Use dynamic announcement content if available
+          if (data.announcement && data.announcement.html) {
+            header.innerHTML = data.announcement.html;
+          }
+          header.style.display = 'flex';
         }
       }
     })
@@ -449,5 +515,40 @@
 })();
 </script>
     <div data-integration="accessibility:toolbar"></div>
-    <script src="script.js"></script>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+    })();
+    </script>
+    <script src="/script.js"></script>
 </body></html>
